@@ -2,10 +2,10 @@
  * Create the store with dynamic reducers
  */
 
-import { createStore, applyMiddleware, compose, Store } from 'redux';
+import { createStore, applyMiddleware, compose, Store, Reducer, Action, DeepPartial, StoreEnhancer } from 'redux';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
-import createSagaMiddleware from 'redux-saga';
+import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
 import createReducer from './reducers';
 import { History } from 'history';
 
@@ -15,8 +15,11 @@ declare global {
   }
 }
 
-interface IExtendedStre extends Store {
-  runSaga: typeof sagaMiddleware.run;
+/**
+ * Store extesion interface
+ */
+interface IStoreExtension {
+  runSaga: SagaMiddleware<any>['run'];
   injectedReducers: any; // FIXME
   injectedSagas: any; // FIXME
 }
@@ -33,7 +36,9 @@ export default function configureStore(initialState = {}, history: History) {
 
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
   /* tslint-disable no-underscore-dangle, indent */
-  const composeEnhancers =
+  const composeEnhancers: (...funcs: StoreEnhancer<{
+    dispatch: {};
+}, {}>[]) => StoreEnhancer<IStoreExtension, {}> =
     process.env.NODE_ENV !== 'production' &&
     typeof window === 'object' &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -45,9 +50,9 @@ export default function configureStore(initialState = {}, history: History) {
       : compose;
   /* tslint-enable */
 
-  const store: IExtendedStre = createStore(
+  const store = createStore<typeof initialState, Action, IStoreExtension, {}>(
     createReducer(),
-    fromJS(initialState),
+    fromJS(initialState) as DeepPartial<any>,
     composeEnhancers(...enhancers),
   );
 

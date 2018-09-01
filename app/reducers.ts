@@ -6,8 +6,15 @@ import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 
-import globalReducer from 'containers/App/reducer';
-import languageProviderReducer from 'containers/LanguageProvider/reducer';
+import globalReducer from './containers/App/reducer';
+import languageProviderReducer from './containers/LanguageProvider/reducer';
+import { Action, Reducer } from 'redux';
+
+declare module 'redux' {
+  interface Action {
+    payload: any;
+  }
+}
 
 /*
  * routeReducer
@@ -25,7 +32,7 @@ const routeInitialState = fromJS({
 /**
  * Merge route into the global application state
  */
-export function routeReducer(state = routeInitialState, action) {
+export function routeReducer(state = routeInitialState, action: Action) {
   switch (action.type) {
     /* istanbul ignore next */
     case LOCATION_CHANGE:
@@ -40,8 +47,8 @@ export function routeReducer(state = routeInitialState, action) {
 /**
  * Creates the main reducer with the dynamically injected ones
  */
-export default function createReducer(injectedReducers) {
-  return combineReducers({
+export default function createReducer(injectedReducers?: any) {
+  return combineReducers<any>({
     route: routeReducer,
     global: globalReducer,
     language: languageProviderReducer,
