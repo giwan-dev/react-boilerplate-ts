@@ -110,12 +110,12 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "app/**/*.{js,jsx}",
-      "!app/**/*.test.{js,jsx}",
-      "!app/*/RbGenerated*/*.{js,jsx}",
+      "app/**/*.{js,jsx,ts,tsx}",
+      "!app/**/*.test.{js,jsx,ts,tsx}",
+      "!app/*/RbGenerated*/*.{js,jsx,ts,tsx}",
       "!app/app.tsx",
       "!app/global-styles.js",
-      "!app/*/*/Loadable.{js,jsx}"
+      "!app/*/*/Loadable.{js,jsx,ts,tsx}"
     ],
     "coverageThreshold": {
       "global": {
@@ -129,6 +129,14 @@
       "node_modules",
       "app"
     ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
     "moduleNameMapper": {
       ".*\\.(css|less|styl|scss|sass)$": "<rootDir>/internals/mocks/cssModule.js",
       ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/internals/mocks/image.js"
@@ -138,7 +146,11 @@
       "raf/polyfill",
       "<rootDir>/internals/testing/enzyme-setup.js"
     ],
-    "testRegex": "tests/.*\\.test\\.js$",
+    "testRegex": "tests/.*\\.test\\.+(js|ts|tsx)$",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest",
+      "^.+\\.jsx?$": "babel-jest"
+    },
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ]
@@ -181,6 +193,7 @@
     "@types/fontfaceobserver": "^0.0.6",
     "@types/history": "^4.7.0",
     "@types/intl": "^1.2.0",
+    "@types/jest": "^23.3.1",
     "@types/react": "^16.4.13",
     "@types/react-dom": "^16.0.7",
     "@types/react-redux": "^6.0.6",
@@ -189,6 +202,7 @@
     "babel-cli": "6.26.0",
     "babel-core": "6.26.3",
     "babel-eslint": "8.2.3",
+    "babel-jest": "^23.4.2",
     "babel-loader": "7.1.4",
     "babel-plugin-dynamic-import-node": "1.2.0",
     "babel-plugin-react-intl": "2.4.0",
@@ -245,6 +259,7 @@
     "stylelint-config-styled-components": "0.1.1",
     "stylelint-processor-styled-components": "1.3.1",
     "svg-url-loader": "2.3.2",
+    "ts-jest": "^23.1.4",
     "ts-loader": "^4.5.0",
     "tslint": "^5.11.0",
     "tslint-config-airbnb": "^5.11.0",

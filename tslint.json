@@ -9,7 +9,16 @@
   ],
   "jsRules": {},
   "rules": {
-    "import-name": false
+    "import-name": false,
+    "max-line-length": false,
+    "ter-max-len": false,
+    "ter-indent": [
+      2,
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ]
   },
   "rulesDirectory": []
 }
