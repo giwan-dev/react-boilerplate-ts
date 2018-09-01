@@ -114,7 +114,7 @@
       "!app/**/*.test.{js,jsx,ts,tsx}",
       "!app/*/RbGenerated*/*.{js,jsx,ts,tsx}",
       "!app/app.tsx",
-      "!app/global-styles.js",
+      "!app/global-styles.ts",
       "!app/*/*/Loadable.{js,jsx,ts,tsx}"
     ],
     "coverageThreshold": {
