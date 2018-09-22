@@ -41,7 +41,9 @@ const ReactBoilerplate = {
     },
 
     entry(pkg) {
-      const dependencyNames = Object.keys(pkg.dependencies);
+      const dependencyNames = Object.keys(pkg.dependencies).filter(
+        key => !key.match('@types/'),
+      );
       const exclude =
         pkg.dllPlugin.exclude || ReactBoilerplate.dllPlugin.defaults.exclude;
       const include =
