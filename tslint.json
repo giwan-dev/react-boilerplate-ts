@@ -18,7 +18,8 @@
       {
         "SwitchCase": 1
       }
-    ]
+    ],
+    "variable-name": false
   },
   "rulesDirectory": []
 }
