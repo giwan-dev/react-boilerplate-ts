@@ -9,19 +9,19 @@
 import 'babel-polyfill';
 
 // Import all the third party stuff
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
-import FontFaceObserver from 'fontfaceobserver';
+const FontFaceObserver = require('fontfaceobserver');
 import createHistory from 'history/createBrowserHistory';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
-import App from './containers/App';
+import App from './containers/App/index.js';
 
 // Import Language Provider
-import LanguageProvider from './containers/LanguageProvider';
+import LanguageProvider from './containers/LanguageProvider/index.js';
 
 // Load the favicon and the .htaccess file
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';
@@ -34,6 +34,10 @@ import { translationMessages } from './i18n';
 
 // Import CSS reset and Global Styles
 import './global-styles';
+
+import 'intl';
+import 'intl/locale-data/jsonp/en.js';
+import 'intl/locale-data/jsonp/de.js';
 
 declare global {
   interface NodeModule {
@@ -84,23 +88,7 @@ if (module.hot) {
 }
 
 // Chunked polyfill for browsers without Intl support
-if (!window.Intl) {
-  new Promise((resolve) => {
-    resolve(import('intl'));
-  })
-    .then(() =>
-      Promise.all([
-        import('intl/locale-data/jsonp/en.js' as any),
-        import('intl/locale-data/jsonp/de.js' as any),
-      ]),
-    )
-    .then(() => render(translationMessages))
-    .catch((err) => {
-      throw err;
-    });
-} else {
-  render(translationMessages);
-}
+render(translationMessages);
 
 // Install ServiceWorker and AppCache in the end since
 // it's not most important operation and if main code fails,
