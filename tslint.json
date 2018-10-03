@@ -9,6 +9,12 @@
   ],
   "jsRules": {},
   "rules": {
+    "function-name": [
+      true,
+      {
+        "function-regex": "[wd]+$"
+      }
+    ],
     "import-name": false,
     "max-line-length": false,
     "ter-max-len": false,
