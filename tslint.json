@@ -12,7 +12,7 @@
     "function-name": [
       true,
       {
-        "function-regex": "[wd]+$"
+        "function-regex": "[a-zA-Z]+$"
       }
     ],
     "import-name": false,
