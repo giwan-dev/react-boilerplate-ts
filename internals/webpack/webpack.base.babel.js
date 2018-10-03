@@ -27,8 +27,10 @@ module.exports = options => ({
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
+        loader: 'ts-loader',
+        options: {
+          configFile: 'tsconfig.webpack.json',
+        },
       },
       {
         test: /\.js$/, // Transform all .js files required somewhere with Babel
