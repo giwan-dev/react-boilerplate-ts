@@ -2,11 +2,11 @@
  * Create the store with dynamic reducers
  */
 
-import { createStore, applyMiddleware, compose, Store, Reducer, Action, DeepPartial, StoreEnhancer } from 'redux';
+import { createStore, applyMiddleware, compose, Store, Reducer, Action, DeepPartial, StoreEnhancer, AnyAction } from 'redux';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware, { SagaMiddleware } from 'redux-saga';
-import createReducer from './reducers';
+import createReducer, { RootReducer, RootReducerMap } from './reducers';
 import { History } from 'history';
 
 declare global {
@@ -50,7 +50,7 @@ export default function configureStore(initialState = {}, history: History) {
       : compose;
   /* tslint-enable */
 
-  const store = createStore<typeof initialState, Action, IStoreExtension, {}>(
+  const store = createStore<RootReducerMap, AnyAction, IStoreExtension, {}>(
     createReducer(),
     fromJS(initialState) as DeepPartial<any>,
     composeEnhancers(...enhancers),

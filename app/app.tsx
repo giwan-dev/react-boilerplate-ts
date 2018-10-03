@@ -9,11 +9,11 @@
 import 'babel-polyfill';
 
 // Import all the third party stuff
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
-import FontFaceObserver from 'fontfaceobserver';
+const FontFaceObserver = require('fontfaceobserver');
 import createHistory from 'history/createBrowserHistory';
 import 'sanitize.css/sanitize.css';
 

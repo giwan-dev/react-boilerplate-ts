@@ -10,12 +10,26 @@
  *   return state.set('yourStateVariable', true);
  */
 
-import { fromJS } from 'immutable';
+import { fromJS, Map } from 'immutable';
 
 import { LOAD_REPOS_SUCCESS, LOAD_REPOS, LOAD_REPOS_ERROR } from './constants';
+import { Action } from 'redux';
+import { ReposLoadedAction } from './actions';
+import { HandleErrorAction } from 'types/action';
+
+export interface AppReducerState {
+  loading: boolean;
+  error: boolean|any;
+  currentUser: boolean|any;
+  userData: {
+    repositories: boolean|any[];
+  };
+}
+export type AppReducerStateMap = Map<(keyof AppReducerState), any>;
+export type AppReducerAction = Action & ReposLoadedAction & HandleErrorAction;
 
 // The initial state of the App
-const initialState = fromJS({
+const initialState: AppReducerStateMap = fromJS({
   loading: false,
   error: false,
   currentUser: false,
@@ -24,7 +38,7 @@ const initialState = fromJS({
   },
 });
 
-function appReducer(state = initialState, action) {
+function appReducer(state: AppReducerStateMap = initialState, action: AppReducerAction) {
   switch (action.type) {
     case LOAD_REPOS:
       return state
