@@ -308,6 +308,15 @@
     "@types/react" "*"
     redux "^4.0.0"
 
+"@types/react-router-dom@^4.3.1":
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/@types/react-router-dom/-/react-router-dom-4.3.1.tgz#71fe2918f8f60474a891520def40a63997dafe04"
+  integrity sha512-GbztJAScOmQ/7RsQfO4cd55RuH1W4g6V1gDW3j4riLlt+8yxYLqqsiMzmyuXBLzdFmDtX/uU2Bpcm0cmudv44A==
+  dependencies:
+    "@types/history" "*"
+    "@types/react" "*"
+    "@types/react-router" "*"
+
 "@types/react-router-redux@^5.0.15":
   version "5.0.16"
   resolved "https://registry.yarnpkg.com/@types/react-router-redux/-/react-router-redux-5.0.16.tgz#3db2a8f0410fe9d821e6ace87b774c8bdecb39ca"

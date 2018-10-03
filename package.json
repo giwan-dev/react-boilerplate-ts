@@ -168,6 +168,7 @@
     "@types/react-intl": "^2.3.11",
     "@types/react-loadable": "^5.4.1",
     "@types/react-redux": "^6.0.9",
+    "@types/react-router-dom": "^4.3.1",
     "@types/react-router-redux": "^5.0.15",
     "@types/redux-immutable": "^3.0.38",
     "babel-polyfill": "6.26.0",
